@@ -80,6 +80,32 @@ Each team member picks one of the statements in the FiveThirtyEight [analysis](h
 
 > Quote the statement you are planning to fact-check.
 
+
+Kate Passwater:
+Quote: 
+Code:
+
+
+
+Samara Feldhacker:
+Quote: 
+Code: 
+
+
+
+Shashank Koneru:
+Quote: 
+Code: 
+
+
+
+Sebastian Naranjo:
+Quote: 
+Code: 
+
+
+
+
 ### Include the code
 
 Make sure to include the code to derive the (numeric) fact for the statement
