@@ -72,23 +72,6 @@ categorical variables with values “yes”, “no” and ““. Call the resul
 data set `deaths`.
 
 ``` r
-library(tidyr)
-library(readr)
-library(dplyr)
-```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 deaths <- av |>
   pivot_longer(cols = c("Death1", "Death2", "Death3", "Death4", "Death5"),
                names_to = "Time",
@@ -171,6 +154,54 @@ possible.
 ### FiveThirtyEight Statement
 
 > Quote the statement you are planning to fact-check.
+
+Kate Passwater: Quote: Code:
+
+Samara Feldhacker: Quote: Code:
+
+Shashank Koneru:  
+Quote: “But you can only tempt death so many times. There’s a 2-in-3
+chance that a member of the Avengers returned from their first stint in
+the afterlife, but only a 50 percent chance they recovered from a second
+or third death.”  
+Code:
+
+``` r
+initial_stats <- av |>
+  summarise(
+    initial_deaths = sum(Death1 == "YES", na.rm = TRUE),
+    initial_returns = sum(Return1 == "YES", na.rm = TRUE),
+    initial_return_rate = initial_returns / initial_deaths
+  )
+
+two_third_stats <- av |>
+  summarise(
+    two_third_deaths = sum(Death2 == "YES", na.rm = TRUE) + sum(Death3 == "YES", na.rm = TRUE),
+    two_third_returns = sum(Return2 == "YES", na.rm = TRUE) + sum(Return3 == "YES", na.rm = TRUE),
+    two_third_return_rate = two_third_returns / two_third_deaths
+  )
+
+initial_stats
+```
+
+    ##   initial_deaths initial_returns initial_return_rate
+    ## 1             69              46           0.6666667
+
+``` r
+two_third_stats
+```
+
+    ##   two_third_deaths two_third_returns two_third_return_rate
+    ## 1               18                 9                   0.5
+
+Summary for Shashank’s Results: This statement is backed up by the data
+and the results. Out of the 69 initial deaths, 46 were followed by a
+return, which provided a return rate of 0.667 (roughly 2 in 3). For the
+second and third deaths combined, there were 18 deaths followed by 9
+returns. This is a return rate of 50%, making the article’s claim
+accurate.
+
+Sebastian Naranjo: Quote: Code:
 
 ### Include the code
 
