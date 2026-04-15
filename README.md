@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/LEAcVKPz)
 
 <!-- README.md is generated from README.Rmd. Please edit the README.Rmd file -->
 
@@ -72,7 +71,59 @@ between 1 and 5 (look into the function `parse_number`); Death is a
 categorical variables with values “yes”, “no” and ““. Call the resulting
 data set `deaths`.
 
+``` r
+library(tidyr)
+library(readr)
+deaths <- av |>
+  pivot_longer(cols = c("Death1", "Death2", "Death3", "Death4", "Death5"),
+               names_to = "Time",
+               values_to = "Death")
+
+deaths$Time <- parse_number(deaths$Time)
+
+head(deaths)
+```
+
+    ## # A tibble: 6 × 18
+    ##   URL                 Name.Alias Appearances Current. Gender Probationary.Introl
+    ##   <chr>               <chr>            <int> <chr>    <chr>  <chr>              
+    ## 1 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 2 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 3 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 4 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 5 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 6 http://marvel.wiki… "Janet va…        1165 YES      FEMALE ""                 
+    ## # ℹ 12 more variables: Full.Reserve.Avengers.Intro <chr>, Year <int>,
+    ## #   Years.since.joining <int>, Honorary <chr>, Return1 <chr>, Return2 <chr>,
+    ## #   Return3 <chr>, Return4 <chr>, Return5 <chr>, Notes <chr>, Time <dbl>,
+    ## #   Death <chr>
+
 Similarly, deal with the returns of characters.
+
+``` r
+returns <- av |>
+  pivot_longer(cols = c("Return1", "Return2", "Return3", "Return4", "Return5"),
+               names_to = "Time",
+               values_to = "Return")
+
+returns$Time <- parse_number(returns$Time)
+
+head(returns)
+```
+
+    ## # A tibble: 6 × 18
+    ##   URL                 Name.Alias Appearances Current. Gender Probationary.Introl
+    ##   <chr>               <chr>            <int> <chr>    <chr>  <chr>              
+    ## 1 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 2 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 3 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 4 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 5 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
+    ## 6 http://marvel.wiki… "Janet va…        1165 YES      FEMALE ""                 
+    ## # ℹ 12 more variables: Full.Reserve.Avengers.Intro <chr>, Year <int>,
+    ## #   Years.since.joining <int>, Honorary <chr>, Death1 <chr>, Death2 <chr>,
+    ## #   Death3 <chr>, Death4 <chr>, Death5 <chr>, Notes <chr>, Time <dbl>,
+    ## #   Return <chr>
 
 Based on these datasets calculate the average number of deaths an
 Avenger suffers.
