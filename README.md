@@ -157,7 +157,41 @@ possible.
 
 Kate Passwater: Quote: Code:
 
-Samara Feldhacker: Quote: Code:
+Samara Feldhacker:
+
+Quote:
+
+> I counted 89 total deaths — some unlucky Avengers are basically Meat
+> Loaf with an E-ZPass — and on 57 occasions the individual made a
+> comeback
+
+Code:
+
+``` r
+deaths |>
+  filter(Death == "YES") |>
+  summarise(totalDeaths = n())
+```
+
+    ## # A tibble: 1 × 1
+    ##   totalDeaths
+    ##         <int>
+    ## 1          89
+
+``` r
+returns |>
+  filter(Return == "YES") |>
+  summarise(comebackcount = n()) 
+```
+
+    ## # A tibble: 1 × 1
+    ##   comebackcount
+    ##           <int>
+    ## 1            57
+
+Summary for Samara’s results: The statement is true. In the code shown
+above, it is shown that the total number of Deaths is 89 and the total
+number of returns is 57.
 
 Shashank Koneru:  
 Quote: “But you can only tempt death so many times. There’s a 2-in-3
