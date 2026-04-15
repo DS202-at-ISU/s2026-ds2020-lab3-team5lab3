@@ -39,6 +39,9 @@ deaths <- av |>
                names_to = "Time",
                values_to = "Death")
 
+deaths <- deaths |>
+  filter(Death != "")
+
 deaths$Time <- parse_number(deaths$Time)
 
 head(deaths)
@@ -50,9 +53,10 @@ Similarly, deal with the returns of characters.
 returns <- av |>
   pivot_longer(cols = c("Return1", "Return2", "Return3", "Return4", "Return5"),
                names_to = "Time",
-               values_to = "Return")
+               values_to = "Return") |>
+  filter(Return != "")
 
-returns$Time <- parse_number(returns$Time)
+returns$Time <- parse_number(returns$Time) 
 
 head(returns)
 ```
