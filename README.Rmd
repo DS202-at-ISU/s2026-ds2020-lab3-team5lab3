@@ -34,12 +34,11 @@ Get the data into a format where the five columns for Death[1-5] are replaced by
 ```{r}
 library(tidyr)
 library(readr)
+library(dplyr)
 deaths <- av |>
   pivot_longer(cols = c("Death1", "Death2", "Death3", "Death4", "Death5"),
                names_to = "Time",
-               values_to = "Death")
-
-deaths <- deaths |>
+               values_to = "Death") |>
   filter(Death != "")
 
 deaths$Time <- parse_number(deaths$Time)
@@ -61,6 +60,10 @@ returns$Time <- parse_number(returns$Time)
 head(returns)
 ```
 Based on these datasets calculate the average number of deaths an Avenger suffers. 
+
+```{r}
+
+```
 
 ## Individually
 

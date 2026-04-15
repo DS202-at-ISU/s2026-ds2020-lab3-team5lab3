@@ -74,10 +74,26 @@ data set `deaths`.
 ``` r
 library(tidyr)
 library(readr)
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
 deaths <- av |>
   pivot_longer(cols = c("Death1", "Death2", "Death3", "Death4", "Death5"),
                names_to = "Time",
-               values_to = "Death")
+               values_to = "Death") |>
+  filter(Death != "")
 
 deaths$Time <- parse_number(deaths$Time)
 
@@ -88,11 +104,11 @@ head(deaths)
     ##   URL                 Name.Alias Appearances Current. Gender Probationary.Introl
     ##   <chr>               <chr>            <int> <chr>    <chr>  <chr>              
     ## 1 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 2 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 3 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 4 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 5 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 6 http://marvel.wiki… "Janet va…        1165 YES      FEMALE ""                 
+    ## 2 http://marvel.wiki… "Janet va…        1165 YES      FEMALE ""                 
+    ## 3 http://marvel.wiki… "Anthony …        3068 YES      MALE   ""                 
+    ## 4 http://marvel.wiki… "Robert B…        2089 YES      MALE   ""                 
+    ## 5 http://marvel.wiki… "Thor Odi…        2402 YES      MALE   ""                 
+    ## 6 http://marvel.wiki… "Thor Odi…        2402 YES      MALE   ""                 
     ## # ℹ 12 more variables: Full.Reserve.Avengers.Intro <chr>, Year <int>,
     ## #   Years.since.joining <int>, Honorary <chr>, Return1 <chr>, Return2 <chr>,
     ## #   Return3 <chr>, Return4 <chr>, Return5 <chr>, Notes <chr>, Time <dbl>,
@@ -104,9 +120,10 @@ Similarly, deal with the returns of characters.
 returns <- av |>
   pivot_longer(cols = c("Return1", "Return2", "Return3", "Return4", "Return5"),
                names_to = "Time",
-               values_to = "Return")
+               values_to = "Return") |>
+  filter(Return != "")
 
-returns$Time <- parse_number(returns$Time)
+returns$Time <- parse_number(returns$Time) 
 
 head(returns)
 ```
@@ -115,11 +132,11 @@ head(returns)
     ##   URL                 Name.Alias Appearances Current. Gender Probationary.Introl
     ##   <chr>               <chr>            <int> <chr>    <chr>  <chr>              
     ## 1 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 2 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 3 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 4 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 5 http://marvel.wiki… "Henry Jo…        1269 YES      MALE   ""                 
-    ## 6 http://marvel.wiki… "Janet va…        1165 YES      FEMALE ""                 
+    ## 2 http://marvel.wiki… "Janet va…        1165 YES      FEMALE ""                 
+    ## 3 http://marvel.wiki… "Anthony …        3068 YES      MALE   ""                 
+    ## 4 http://marvel.wiki… "Robert B…        2089 YES      MALE   ""                 
+    ## 5 http://marvel.wiki… "Thor Odi…        2402 YES      MALE   ""                 
+    ## 6 http://marvel.wiki… "Thor Odi…        2402 YES      MALE   ""                 
     ## # ℹ 12 more variables: Full.Reserve.Avengers.Intro <chr>, Year <int>,
     ## #   Years.since.joining <int>, Honorary <chr>, Death1 <chr>, Death2 <chr>,
     ## #   Death3 <chr>, Death4 <chr>, Death5 <chr>, Notes <chr>, Time <dbl>,
