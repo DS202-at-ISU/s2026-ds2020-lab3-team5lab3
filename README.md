@@ -155,7 +155,28 @@ possible.
 
 > Quote the statement you are planning to fact-check.
 
-Kate Passwater: Quote: Code:
+Kate Passwater: Quote: Out of 173 listed Avengers, my analysis found
+that 69 had died at least one time after they joined the team” Code:
+
+``` r
+total_avengers <- length(av$Name.Alias)
+total_avengers
+```
+
+    ## [1] 173
+
+``` r
+total_died_once <- deaths |> filter(Time == 1) |> filter(Death == "YES") |> summarise(diedOnce=n())
+total_died_once
+```
+
+    ## # A tibble: 1 × 1
+    ##   diedOnce
+    ##      <int>
+    ## 1       69
+
+Summary for Kate’s Results: This quote is correct. There are 173
+Avengers in this table and 69 of them have died at least once.
 
 Samara Feldhacker:
 

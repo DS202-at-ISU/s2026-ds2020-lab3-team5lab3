@@ -83,9 +83,15 @@ Each team member picks one of the statements in the FiveThirtyEight [analysis](h
 
 
 Kate Passwater:
-Quote: 
+Quote: Out of 173 listed Avengers, my analysis found that 69 had died at least one time after they joined the team"
 Code:
-
+```{r}
+total_avengers <- length(av$Name.Alias)
+total_avengers
+total_died_once <- deaths |> filter(Time == 1) |> filter(Death == "YES") |> summarise(diedOnce=n())
+total_died_once
+```
+Summary for Kate's Results: This quote is correct. There are 173 Avengers in this table and 69 of them have died at least once.
 
 
 Samara Feldhacker:
